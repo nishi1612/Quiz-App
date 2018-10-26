@@ -1,7 +1,24 @@
-var questions = [
-	new Question("What is capital of India?",["Gujarat","Maharashtra","Delhi","Rajasthan"],"Delhi"),
-	new Question("What is capital of Gujarat?",["Rajkot","Ahmedabad","Gandhinagar","Surat"],"Gandhinagar")
-];
+var questions = [];
+
+<?php
+	include('conn.php');
+	$sq = "select * from questions";
+	$res = $conn->query($sq);
+	if($res){
+		while($fe=$res->fetch_object()){
+			$que = $fe->question;
+			$c1 = $fe->choice1;
+			$c2 = $fe->choice2;
+			$c3 = $fe->choice3;
+			$c4 = $fe->choice4;
+			$ans = $fe->answer;
+			?>
+			questions.push(new Question("<?php echo $que; ?>" , ["<?php echo $c1; ?>","<?php echo $c2; ?>","<?php echo $c3; ?>","<?php echo $c4; ?>"],"<?php echo $ans; ?>"));
+			<?php
+
+		}
+	} 
+?>
 
 var quiz = new Quiz(questions);
 
@@ -67,6 +84,7 @@ function populate(j){
 	}
 };
 
-populate(0);
-
+function foo(){
+	populate(0);	
+}
 

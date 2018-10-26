@@ -11,7 +11,7 @@
 	<title>Quiz</title>
 	<link rel="stylesheet" href="style.css" type = "style/css">
 </head>
-<body>
+<body onload="foo()">
   	
   	<div class="grid">
   		<div id="quiz">
